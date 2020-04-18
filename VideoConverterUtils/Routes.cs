@@ -8,24 +8,13 @@ namespace VideoConverterUtils
     {
 
         /// <summary>
-        /// Path to where ffmpeg.exe is located
-        /// </summary>
-        /// <returns></returns>
-        public static string FFMPEG_PATH()
-        {
-
-            return @"C:\\ffmpeg - 4.2.2\bin\";
-        
-        }
-
-        /// <summary>
         /// Path where the txt with the files is located
         /// </summary>
         /// <returns></returns>
         public static string SOURCE_FILES_PATH()
         {
 
-            return @"D:\\Pruebas VideoConverterUtils\files.txt";
+            return @"D:\Pruebas VideoConverterUtils\files.txt";
 
         }
 
@@ -36,7 +25,7 @@ namespace VideoConverterUtils
         public static string SOURCE_FOLDERS_PATH()
         {
 
-            return @"D:\\Pruebas VideoConverterUtils\folders.txt";
+            return @"D:\Pruebas VideoConverterUtils\folders.txt";
 
         }
 
