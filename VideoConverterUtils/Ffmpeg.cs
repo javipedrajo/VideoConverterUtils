@@ -1,54 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 
 namespace VideoConverterUtils
 {
     public class Ffmpeg
     {
 
-        static string strCmdText = "";
-
         public static void Run()
         {
-/*            string _changePath = "cd" + Routes.FFMPEG_PATH(); 
-            System.Diagnostics.Process.Start("CMD.exe", _changePath); // change cmd path to where ffmeg.exe is located*/
 
-            List<string> filesTODO = FileManager.ReadAllFilesFromFile(Routes.SOURCE_FILES_PATH().ToString());
-            List<string> foldersTODO = FileManager.ReadAllFoldersFromFile(Routes.SOURCE_FOLDERS_PATH().ToString());
+            ExportToMP4HEVC();
+            ExportFromMKVHEVCToMP4HEVC();
+
+        }
+
+        private static void ExportToMP4HEVC()
+        {
+
+            List<string> filesTODO = FileManager.ReadAllFilesFromFile(Routes.SOURCE_FILES_PATH_TO_HEVC_MP4().ToString());
+            List<string> foldersTODO = FileManager.ReadAllFoldersFromFile(Routes.SOURCE_FOLDERS_PATH_TO_HEVC_MP4().ToString());
 
             if (filesTODO.Count > 0)
             {
                 foreach (var item in filesTODO)
                 {
-                    RunFfmpeg(item);
-                }               
+                    ConvertToMP4_HEVC(item);
+                }
             }
 
             if (foldersTODO.Count > 0)
             {
                 foreach (var item in foldersTODO)
                 {
-                    RunFfmpeg(item);
+                    ConvertToMP4_HEVC(item);
                 }
             }
 
         }
 
-        private static void RunFfmpeg(string file)
+        private static void ExportFromMKVHEVCToMP4HEVC()
         {
 
-            string strCmdText2 = "-i " + "\"" + file + "\"" + " -vcodec hevc_nvenc -pix_fmt yuv420p10 -preset hq -2pass 1 -vb 8000k -acodec copy " +
-                "\"" + file + "_HEVC" +
-                ".mp4" + "\"";
+            List<string> filesTODO = FileManager.ReadAllFilesFromFile(Routes.SOURCE_FILES_PATH_MKV_TO_MP4().ToString());
+            List<string> foldersTODO = FileManager.ReadAllFoldersFromFile(Routes.SOURCE_FOLDERS_PATH_MKV_TO_MP4().ToString());
 
-            FFMPEGArg(strCmdText2);
+            if (filesTODO.Count > 0)
+            {
+                foreach (var item in filesTODO)
+                {
+                    ConvertFromMKVtoMP4(item);
+                }
+            }
+
+            if (foldersTODO.Count > 0)
+            {
+                foreach (var item in foldersTODO)
+                {
+                    ConvertFromMKVtoMP4(item);
+                }
+            }
 
         }
 
-        private static void FFMPEGArg(string args)
+        /// <summary>
+        /// Encode a video with hevc_nvenc, -crf, same audio in .MP4
+        /// </summary>
+        /// <param name="file"></param>
+        private static void ConvertToMP4_HEVC(string file)
+        {
+
+            string strCmdText = "-i " + "\"" + file + "\"" + " -c: hevc_nvenc -crf 28 -acodec copy " +
+                "\"" + file +
+                ".mp4" + "\"";
+
+            RunFFMPEG(strCmdText);
+
+        }
+
+        /// <summary>
+        /// Change a filex extension  from MKV to MP4
+        /// </summary>
+        /// <param name="file"></param>
+        private static void ConvertFromMKVtoMP4(string file)
+        {
+
+            string strCmdText = "-i " + "\"" + file + "\"" + " -vcodec copy -acodec copy -scodec copy " +
+                "\"" + file +
+                ".mp4" + "\"";
+
+            RunFFMPEG(strCmdText);
+
+        }
+
+        private static void RunFFMPEG(string args)
         {
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -61,8 +106,7 @@ namespace VideoConverterUtils
             //startInfo.RedirectStandardError = true;
 
             Console.WriteLine(string.Format(
-                "Executing \"{0}\" with arguments \"{1}\".\r\n",
-                startInfo.FileName,
+                "Executing ffmpeg \"{0}\".\r\n",
                 startInfo.Arguments));
 
             try

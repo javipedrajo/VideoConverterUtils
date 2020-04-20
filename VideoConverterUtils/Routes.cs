@@ -1,53 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VideoConverterUtils
+﻿namespace VideoConverterUtils
 {
     public class Routes
     {
 
         /// <summary>
-        /// Path where the txt with the files is located
+        /// MKV to MP4. Path where the txt with the files is located
         /// </summary>
         /// <returns></returns>
-        public static string SOURCE_FILES_PATH()
+        public static string SOURCE_FILES_PATH_MKV_TO_MP4()
         {
 
-            return @"D:\Pruebas VideoConverterUtils\files.txt";
+            return "@/../../../../resources/mkv_mp4/files.txt";
 
         }
 
         /// <summary>
-        /// Path where the txt with the folders is located
+        /// MKV to MP4. Path where the txt with the folders is located
         /// </summary>
         /// <returns></returns>
-        public static string SOURCE_FOLDERS_PATH()
+        public static string SOURCE_FOLDERS_PATH_MKV_TO_MP4()
         {
 
-            return @"D:\Pruebas VideoConverterUtils\folders.txt";
+            return "@/../../../../resources/mkv_mp4/folders.txt";
 
         }
 
         /// <summary>
-        /// Sufix to add to the end of the converted file
+        /// TO HEVC/MP4. Path where the txt with the files is located
         /// </summary>
         /// <returns></returns>
-        public static string CONVERTED_FILES_SUFIX()
+        public static string SOURCE_FILES_PATH_TO_HEVC_MP4()
         {
 
-            return " HEVC";
+            return "@/../../../../resources/mp4_hevc/files.txt";
 
         }
 
         /// <summary>
-        /// Subfolder in which to store the converted files
+        /// TO HEVC/MP4. Path where the txt with the folders is located
         /// </summary>
         /// <returns></returns>
-        public static string CONVERTED_FILES_SUBFOLDER()
+        public static string SOURCE_FOLDERS_PATH_TO_HEVC_MP4()
         {
 
-            return "";
+            return "@/../../../../resources/mp4_hevc/folders.txt";
 
         }
 
