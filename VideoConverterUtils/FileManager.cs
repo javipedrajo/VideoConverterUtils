@@ -48,7 +48,7 @@ namespace VideoConverterUtils
 
                 foreach (var item in _arr)
                 {
-                    if (item.EndsWith("mp4") || item.EndsWith("mkv") || item.EndsWith("avi") || item.EndsWith("mov") || item.EndsWith("mts") || item.EndsWith("m2ts"))
+                    if (item.EndsWith("mp4") || item.EndsWith("mkv") || item.EndsWith("avi") || item.EndsWith("mov") || item.EndsWith("mts") || item.EndsWith("m2ts") || item.EndsWith("webm"))
                     {
                         _tempList.Add(item);
                     }
