@@ -100,7 +100,7 @@ namespace VideoConverterUtils
 
             startInfo.CreateNoWindow = false;
             startInfo.UseShellExecute = false;
-            startInfo.FileName = @"C:\ffmpeg-4.2.2\bin\ffmpeg.exe";
+            startInfo.FileName = @"C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe";
             startInfo.Arguments = args;
             startInfo.RedirectStandardOutput = true;
             //startInfo.RedirectStandardError = true;
