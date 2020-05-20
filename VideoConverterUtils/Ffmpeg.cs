@@ -70,7 +70,7 @@ namespace VideoConverterUtils
         private static void ConvertToMP4_HEVC(string file)
         {
 
-            string strCmdText = "-i " + "\"" + file + "\"" + " -c: hevc_nvenc -crf 28 -acodec copy " +
+            string strCmdText = "-i " + "\"" + file + "\"" + " -map 0:v? -map 0:a? -map 0:s:? -c: hevc_nvenc -crf 28 -acodec copy -c:s mov_text " +
                 "\"" + file +
                 ".mp4" + "\"";
 
